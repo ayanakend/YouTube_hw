@@ -13,7 +13,7 @@
         android:layout_height="80dp"
         android:scaleType="fitXY"
         app:riv_corner_radius="4dp"
-        android:src="@drawable/playlist_item_rounded"
+        android:src="@drawable/ic_launcher_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
