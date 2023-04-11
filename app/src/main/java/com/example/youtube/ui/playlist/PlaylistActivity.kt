@@ -68,10 +68,6 @@ class PlaylistActivity : BaseActivity<PlaylistActivityBinding, PlaylistViewModel
         }
     }
 
-    override fun inflateViewBinding(): PlaylistActivityBinding {
-        return PlaylistActivityBinding.inflate(layoutInflater)
-    }
-
     private fun onClick(item: Item) {
         val intent = Intent(this@PlaylistActivity, VideoActivity::class.java)
         intent.putExtra("id", item.snippet.title)

@@ -8,7 +8,7 @@ import androidx.viewbinding.ViewBinding
 abstract class BaseActivity<VB : ViewBinding, VM : BaseViewModel> : AppCompatActivity() {
 
     lateinit var binding: VB
-    protected abstract var viewModel: VM
+    protected abstract val viewModel: VM
     protected abstract fun inflateViewBinding(inflater: LayoutInflater): VB
 
     override fun onCreate(savedInstanceState: Bundle?) {
