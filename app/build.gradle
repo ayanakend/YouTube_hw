@@ -48,29 +48,22 @@ dependencies {
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
-
 //Glide
     implementation 'com.github.bumptech.glide:glide:4.15.0'
-
 // Lifecycle
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
-
 // Interceptor
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
-
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
-
     //glide
     implementation 'com.github.bumptech.glide:glide:4.15.0'
     //corners
     implementation 'com.makeramen:roundedimageview:2.3.0'
 
-
-
     implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.3.2'
-// If you use ViewBinding
     implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl-viewbinding:4.3.2'
+
     modules {
         module("org.jetbrains.kotlin:kotlin-stdlib-jdk7") {
             replacedBy("org.jetbrains.kotlin:kotlin-stdlib", "kotlin-stdlib-jdk7 is now part of kotlin-stdlib")
