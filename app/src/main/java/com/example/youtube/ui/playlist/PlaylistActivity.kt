@@ -1,33 +1,28 @@
 package com.example.youtube.ui.playlist
 
 import android.content.Intent
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.youtube.core.network.isOnline.ConnectionLiveData
 import com.example.youtube.core.network.result.Status
 import com.example.youtube.core.ui.BaseActivity
 import com.example.youtube.databinding.PlaylistActivityBinding
 import com.example.youtube.remote.model.Item
+import com.example.youtube.remote.model.PlaylistInfo
 import com.example.youtube.ui.playlist.adapter.PlaylistAdapter
 import com.example.youtube.ui.video.VideoActivity
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class PlaylistActivity : BaseActivity<PlaylistActivityBinding, PlaylistViewModel>(){
-    private var adapter: PlaylistAdapter? = null
-    override val viewModel: PlaylistViewModel by lazy {
-        ViewModelProvider(this)[PlaylistViewModel::class.java]
-    }
+class PlayListActivity : BaseActivity<PlaylistActivityBinding, PlaylistViewModel>(){
+    private val adapter: PlaylistAdapter by lazy { PlaylistAdapter(this::onClick) }
 
-    override fun inflateViewBinding(inflater: LayoutInflater): PlaylistActivityBinding {
-        return PlaylistActivityBinding.inflate(layoutInflater)
-    }
+    override val viewModel: PlaylistViewModel by viewModel()
 
     override fun checkConnection() {
         super.checkConnection()
-        var connection = ConnectionLiveData(application)
+        val connection = ConnectionLiveData(application)
         connection.observe(this) { isConnected ->
             if (isConnected) {
                 binding.rvPlaylist.visibility = View.VISIBLE
@@ -41,7 +36,6 @@ class PlaylistActivity : BaseActivity<PlaylistActivityBinding, PlaylistViewModel
 
     override fun initRV() {
         super.initRV()
-        adapter = PlaylistAdapter(this::onClick)
         binding.rvPlaylist.layoutManager = LinearLayoutManager(this)
     }
 
@@ -54,7 +48,7 @@ class PlaylistActivity : BaseActivity<PlaylistActivityBinding, PlaylistViewModel
             when (it.status) {
                 Status.SUCCESS -> {
                     binding.rvPlaylist.adapter = adapter
-                    it.data?.let { it1 -> adapter?.setList(it1.items) }
+                    it.data?.let { it1 -> adapter.setList(it1.items) }
                     viewModel.loading.postValue(false)
                 }
                 Status.LOADING -> {
@@ -68,10 +62,21 @@ class PlaylistActivity : BaseActivity<PlaylistActivityBinding, PlaylistViewModel
         }
     }
 
+    override fun inflateViewBinding(): PlaylistActivityBinding {
+        return PlaylistActivityBinding.inflate(layoutInflater)
+    }
+
     private fun onClick(item: Item) {
-        val intent = Intent(this@PlaylistActivity, VideoActivity::class.java)
-        intent.putExtra("id", item.snippet.title)
-        Toast.makeText(this, item.snippet.title, Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, VideoActivity::class.java)
+        intent.putExtra(
+            "VIDEOS_KEY",
+            PlaylistInfo(
+                item.id,
+                item.snippet.title,
+                item.snippet.description,
+                item.contentDetails.itemCount
+            )
+        )
         startActivity(intent)
     }
 }

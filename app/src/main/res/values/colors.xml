@@ -8,4 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="youtube_red">#FF0000</color>
+    <color name="forTitle">#333333</color>
+    <color name="forSeries">#151515</color>
 </resources>

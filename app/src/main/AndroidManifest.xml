@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.youtube">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -17,6 +18,11 @@
         android:theme="@style/Theme.Youtube"
         tools:targetApi="31">
         <activity
+            android:name=".ui.player.PlayerActivity"
+            android:exported="false"
+            android:label="@string/title_activity_player"
+            android:theme="@style/Theme.Youtube.NoActionBar" />
+        <activity
             android:name=".ui.video.VideoActivity"
             android:exported="false">
             <meta-data
@@ -24,7 +30,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.playlist.PlaylistActivity"
+            android:name=".ui.playlist.PlayListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

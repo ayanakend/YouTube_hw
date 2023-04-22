@@ -7,27 +7,25 @@ import androidx.viewbinding.ViewBinding
 
 abstract class BaseActivity<VB : ViewBinding, VM : BaseViewModel> : AppCompatActivity() {
 
-    lateinit var binding: VB
+    protected lateinit var binding: VB
     protected abstract val viewModel: VM
-    protected abstract fun inflateViewBinding(inflater: LayoutInflater): VB
+    protected abstract fun inflateViewBinding(): VB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = inflateViewBinding(layoutInflater)
+        binding = inflateViewBinding()
         setContentView(binding.root)
 
-        checkInternet()
+        checkConnection()
         initViewModel()
         initView()
-        initListener()
         initRV()
+        initListener()
     }
 
-    open fun initView() {}
-    open fun checkConnection() {}
-    open fun initListener() {}
-    open fun checkInternet() {}
-    open fun initViewModel() {}
     open fun initRV() {}
-
+    open fun initViewModel() {}
+    open fun checkConnection() {}
+    open fun initView() {}
+    open fun initListener() {}
 }

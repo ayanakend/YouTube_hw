@@ -9,13 +9,13 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 
-class ConnectionLiveData(private val connectiveManager: ConnectivityManager) : LiveData<Boolean>() {
+class ConnectionLiveData(private val connectivityManager: ConnectivityManager):LiveData<Boolean>() {
     constructor(application: Application) : this(
         application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     )
 
-    private val networkCallBack = @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
-    object : ConnectivityManager.NetworkCallback() {
+    private val networkCallback = @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    object : ConnectivityManager.NetworkCallback(){
         override fun onAvailable(network: Network) {
             super.onAvailable(network)
             postValue(true)
@@ -25,20 +25,16 @@ class ConnectionLiveData(private val connectiveManager: ConnectivityManager) : L
             super.onLost(network)
             postValue(false)
         }
-
     }
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onActive() {
+        super.onActive()
         val builder = NetworkRequest.Builder()
-        connectiveManager.registerNetworkCallback(builder.build(), networkCallBack)
+        connectivityManager.registerNetworkCallback(builder.build(), networkCallback)
     }
 
-    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onInactive() {
         super.onInactive()
-        connectiveManager.unregisterNetworkCallback(networkCallBack)
-
+        connectivityManager.unregisterNetworkCallback(networkCallback)
     }
-
 }
