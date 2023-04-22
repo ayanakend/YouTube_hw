@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.player.PlayerActivity">
+
+    <FrameLayout
+        android:id="@+id/no_internet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <include layout="@layout/no_internet_activity" />
+    </FrameLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/back_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="38dp"
+            android:src="@drawable/rrow_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="65dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="36dp"
+            android:lineHeight="24sp"
+            android:text="Playlist"
+            android:textColor="#FF0000"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/back_tv"
+            android:layout_width="38dp"
+            android:layout_height="22dp"
+            android:layout_marginLeft="33dp"
+            android:layout_marginTop="36dp"
+            android:lineHeight="24sp"
+            android:text="Back"
+            android:textColor="#FF0000"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.exoplayer2.ui.StyledPlayerView
+            android:id="@+id/video"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginTop="76dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:resize_mode="fit"
+            app:show_buffering="when_playing"
+            app:show_shuffle_button="true" />
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="328dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="330dp"
+            android:fontFamily="@font/fjalla_one_regular"
+            android:gravity="top"
+            android:lineHeight="22dp"
+            android:textColor="@color/forTitle"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/download_iv"
+            android:layout_width="141dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="385dp"
+            android:layout_marginEnd="203dp"
+            android:src="@drawable/download"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/desc_tv"
+            android:layout_width="328dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="451dp"
+            android:gravity="start|top"
+            android:text=""
+            android:textColor="@color/forTitle"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
